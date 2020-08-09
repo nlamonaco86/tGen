@@ -29,7 +29,7 @@ function createTeam() {
         },
     ]) 
     .then (function (response) {
-        for(var i=1;i<response.staffSize;i++){
+        console.log(response.staffSize)
         inquirer.prompt([
             {
                 type: "input",
@@ -67,7 +67,7 @@ function createTeam() {
                 message: "School:",
                 name: "school",
             },    
-          
+           
         ]) .then(function (response) {
             if (response.role === "Manager") {
                 teamMember = new Manager(response.name, response.id, response.email, response.officeNumber);
@@ -80,14 +80,14 @@ function createTeam() {
             }
         
             team.push(teamMember);
-        
+            
             console.log(teamMember)
             console.log("-----------------")
             console.log(team)
             
     });
  
-    }});
+    });
    //ask how many people are on the team, then run the function that many times with an adjustable loop
 
 };
