@@ -14,9 +14,85 @@ const render = require("./lib/htmlRenderer");
 const team = [];
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
-function createTeam(){
-    
-}
+
+//ask the user about the team
+//additional questions prompt if member is manager, intern or engineer
+//information is put into a new object
+//those objects are stored in the array
+function createTeam() {
+    var teamMember = {};
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "How many people are on the team?",
+            name: "staffSize",
+        },
+    ]) 
+    .then (function (response) {
+        for(var i=1;i<response.staffSize;i++){
+        inquirer.prompt([
+            {
+                type: "input",
+                message: "Please enter employee name:",
+                name: "name",
+            },
+            {
+                type: "list",
+                message: "Choose Employee Role:",
+                choices: ["Intern", "Engineer", "Manager"],
+                name: "role"
+            },
+            {
+                type: "input",
+                message: "Employee ID:",
+                name: "id",
+            },
+            {
+                type: "input",
+                message: "E-Mail Address:",
+                name: "email",
+            },
+            {
+                type: "input",
+                message: "Github Username:",
+                name: "github",
+            },
+            {
+                type: "input",
+                message: "Office Number:",
+                name: "officeNumber",
+            },
+            {
+                type: "input",
+                message: "School:",
+                name: "school",
+            },    
+          
+        ]) .then(function (response) {
+            if (response.role === "Manager") {
+                teamMember = new Manager(response.name, response.id, response.email, response.officeNumber);
+                
+            } else if (response.role === "Engineer") {
+                teamMember = new Engineer(response.name, response.id, response.email, response.github);
+                
+            } else {
+                teamMember = new Intern(response.name, response.id, response.email, response.school);
+            }
+        
+            team.push(teamMember);
+        
+            console.log(teamMember)
+            console.log("-----------------")
+            console.log(team)
+            
+    });
+ 
+    }});
+   //ask how many people are on the team, then run the function that many times with an adjustable loop
+
+};
+
+createTeam();
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
