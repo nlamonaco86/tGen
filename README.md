@@ -15,7 +15,11 @@ I want to generate a webpage that displays my team's basic info
 so that I have quick access to emails and GitHub profiles
 ```
 
-## Github repo: github.com/nlamonaco86/tGen
+## Github repo: 
+http://www.github.com/nlamonaco86/tGen
 
-## Video Demonstration:
+## Video Demo:
+https://github.com/nlamonaco86/tGen/raw/master/tGenDEMO.avi
+
+![Screenshot of the App](tGenSCRN.png)
 
